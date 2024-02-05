@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class QuickSort {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the Array:");
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        System.out.println("Enter the array input:");
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        // Printing the array
+        System.out.println("The element in the array are:");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println();
+        sort(array,0,array.length-1);
+        System.out.println("Sorted is: "+Arrays.toString(array));
+    }
+    static void sort(int[] array,int low,int high){
+        if(low < high){
+            int partitionIndex = partition(array,low,high);
+            sort(array,low,partitionIndex-1);
+            sort(array,partitionIndex+1,high);
+        }
+    }
+
+    static int partition(int[] array,int low,int high){
+        int pivot = array[low];
+        int start = low+1;
+        int end = high;
+
+        while(start<=end){
+            while (start<=end && array[start]<=pivot){
+                start++;
+            }
+            while(start<=end && array[end]>=pivot){
+                end--;
+            }
+            if(start<end){
+                int temp = array[start];
+                array[start]= array[end];
+                array[end] = temp;
+            }
+        }
+        int temp = array[low];
+        array[low]=array[end];
+        array[end] = temp;
+
+        return end;
+    }
+}
