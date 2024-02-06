@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class MergeSort {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Size of the array");
+        int n = sc.nextInt();
+        System.out.println("Enter the elements for the array");
+        int[] array = new int[n];
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        // Printing the array
+        System.out.println("Elements in the array are: ");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println();
+
+        int[] sorted = mergesort(array);
+        System.out.println(Arrays.toString(sorted));
+
+    }
+    static int[] mergesort(int[] array){
+        if(array.length==1){
+            return array;
+        }
+        int mid =array.length/2;
+        int[] left = mergesort(Arrays.copyOfRange(array,0,mid));
+        int[] right = mergesort(Arrays.copyOfRange(array,mid,array.length));
+
+        return merge(left,right);
+    }
+    static int [] merge(int [] left, int [] right){
+        int [] merged = new int[left.length+right.length];
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i< left.length&&j< right.length){
+            if(left[i]<right[j]){
+                merged[k++] = left[i++];
+            }
+            else{
+                merged[k++] = right[j++];
+            }
+        }
+        while(i< left.length){
+            merged[k++] = left[i++];
+        }
+        while(j<right.length){
+            merged[k++] = right[j++];
+        }
+        return merged;
+    }
+
+}
