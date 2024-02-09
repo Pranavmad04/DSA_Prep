@@ -1,0 +1,26 @@
+// Permutations of a String
+import java.util.*;
+
+public class StringPermutation {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the String: ");
+        String str = sc.nextLine();
+        System.out.println("The Input String is: "+str);
+        generatePermutations("",str);
+    }
+
+    static void generatePermutations(String prefix,String remaining){
+        int length = remaining.length();
+        if(length==0){
+            System.out.println(prefix);
+            return;
+        }
+        for (int i=0;i<length;i++){
+            Character currentChar = remaining.charAt(i);
+            String newPrefix = prefix+currentChar;
+            String newRemaining = remaining.substring(0,i)+remaining.substring(i+1);
+            generatePermutations(newPrefix,newRemaining);
+        }
+    }
+}
