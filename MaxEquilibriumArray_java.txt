@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class EquilibriumArray {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the array");
+        int n = sc.nextInt();
+        System.out.println("Enter the array input: ");
+        int[] array = new int[n];
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        System.out.println("The Elements in the array: ");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println();
+        int equilibriumSum = findMaxSum(array,n);
+        if(equilibriumSum != -1){
+            System.out.println("The Equilibrium Sum is:"+equilibriumSum);
+        }
+        else {
+            System.out.println("No Equilibrium Exist");
+        }
+    }
+    static int findMaxSum(int[] array,int n){
+        int totalSum = 0;
+        int leftSum = 0;
+        for(int i=0;i<n;i++){
+            totalSum += array[i];
+        }
+        for(int i=0;i<n;i++){
+            totalSum -= array[i];
+            if(leftSum==totalSum){
+                return leftSum;
+            }
+            leftSum += array[i];
+        }
+        return -1;
+    }
+}
