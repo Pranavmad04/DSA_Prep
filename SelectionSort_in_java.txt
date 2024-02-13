@@ -1,0 +1,40 @@
+
+import java.util.Scanner;
+public class SelectionSort {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the array:");
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        System.out.println("Enter the elements for the array");
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        System.out.println("The elements in the array are: ");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println();
+        sort(array);
+        System.out.println("Sorted array is:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+    static void sort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            int min_index = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[min_index]) {
+                    min_index = j;
+                }
+            }
+            // Swap outside the inner loop
+            int temp = array[min_index];
+            array[min_index] = array[i];
+            array[i] = temp;
+        }
+    }
+}
