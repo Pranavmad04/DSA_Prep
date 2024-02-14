@@ -1,0 +1,55 @@
+
+import java.util.Scanner;
+
+public class QuickSortRecursive {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the Array:");
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        System.out.println("Enter the array input:");
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        System.out.println("The element in the array are:");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println();
+        quickSort(array,0,array.length-1);
+        System.out.println("The Sorted is: ");
+        for(int i=0;i<n;i++){
+            System.out.print(array[i]+" ");
+        }
+    }
+
+    static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(array, low, high);
+
+            quickSort(array, low, partitionIndex - 1);
+            quickSort(array, partitionIndex + 1, high);
+        }
+    }
+
+    static int partition(int[] array, int low, int high) {
+        int pivot = array[low];
+        int i = low + 1;
+
+        for (int j = low + 1; j <= high; j++) {
+            if (array[j] < pivot) {
+                // Swap array[i] and array[j]
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+
+                i++;
+            }
+        }
+        int temp = array[i - 1];
+        array[i - 1] = array[low];
+        array[low] = temp;
+
+        return i - 1;
+    }
+}
