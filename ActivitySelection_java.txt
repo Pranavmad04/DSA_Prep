@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class ActivitySelection {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String[] activity = new String[n];
+        int[] StartTime = new int[n];
+        int[] EndTime = new int[n];
+        System.out.println("Enter Activities:");
+        for(int i=0;i<n;i++){
+            activity[i] = sc.nextLine();
+        }
+        System.out.println("Enter the StartTime for Activities:");
+        for(int i=0;i<n;i++){
+            StartTime[i] = sc.nextInt();
+        }
+        System.out.println("Enter the EndTime for Activities:");
+        for(int i=0;i<n;i++){
+            EndTime[i] = sc.nextInt();
+        }
+        int i=0;
+        for(int j=1;j<n;j++){
+            if(StartTime[i]<=EndTime[j]){
+                i=j;
+            }
+            System.out.println(activity[i]+" ");
+            j++;
+        }
+        System.out.println();
+    }
+}
